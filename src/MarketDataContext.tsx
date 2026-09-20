@@ -48,7 +48,8 @@ export function MarketDataProvider({
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8788");
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const socket = new WebSocket(`${protocol}//${window.location.host}/ws`);
 
     socket.onopen = () => {
       console.log("✅ LYRA canlı market bağlantısı aktif");

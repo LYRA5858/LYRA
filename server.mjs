@@ -3,14 +3,28 @@ import cors from "cors";
 import "dotenv/config";
 import WebSocket, { WebSocketServer } from "ws";
 import OpenAI from "openai";
+import http from "http";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "1mb" }));
 
-const HTTP_PORT = 8787;
-const WS_PORT = 8788;
+/* -----------------------------
+   SERVER / RENDER CONFIG
+----------------------------- */
+
+const PORT = Number(process.env.PORT || 8787);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const distPath = path.join(__dirname, "dist");
+
+/* -----------------------------
+   MARKET STATE
+----------------------------- */
 
 const state = {
   updatedAt: null,
@@ -113,7 +127,10 @@ function connectSpot() {
   });
 
   ws.on("close", () => {
-    console.log("⚠️ Binance Spot bağlantısı kapandı. Yeniden bağlanılıyor...");
+    console.log(
+      "⚠️ Binance Spot bağlantısı kapandı. Yeniden bağlanılıyor..."
+    );
+
     setTimeout(connectSpot, 3000);
   });
 
@@ -160,7 +177,10 @@ function connectFuturesSymbol(symbol) {
 
       broadcast();
     } catch (error) {
-      console.error(`Futures veri hatası ${symbol}:`, error.message);
+      console.error(
+        `Futures veri hatası ${symbol}:`,
+        error.message
+      );
     }
   });
 
@@ -272,11 +292,41 @@ ${marketData}
 });
 
 /* -----------------------------
-   WEBSOCKET FOR LYRA FRONTEND
+   STATIC FRONTEND
 ----------------------------- */
 
+app.use(express.static(distPath));
+
+/* -----------------------------
+   SPA FALLBACK
+----------------------------- */
+
+app.use((req, res, next) => {
+  if (
+    req.path.startsWith("/api/") ||
+    req.path === "/ws"
+  ) {
+    return next();
+  }
+
+  if (req.method === "GET") {
+    return res.sendFile(
+      path.join(distPath, "index.html")
+    );
+  }
+
+  next();
+});
+
+/* -----------------------------
+   HTTP + WEBSOCKET SERVER
+----------------------------- */
+
+const server = http.createServer(app);
+
 const wss = new WebSocketServer({
-  port: WS_PORT,
+  server,
+  path: "/ws",
 });
 
 wss.on("connection", (socket) => {
@@ -302,13 +352,13 @@ wss.on("connection", (socket) => {
    START
 ----------------------------- */
 
-app.listen(HTTP_PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log("");
   console.log("======================================");
   console.log("        LYRA BACKEND AKTİF");
   console.log("======================================");
-  console.log(`HTTP API : http://localhost:${HTTP_PORT}`);
-  console.log(`WS API   : ws://localhost:${WS_PORT}`);
+  console.log(`HTTP + WS : http://localhost:${PORT}`);
+  console.log(`WebSocket : ws://localhost:${PORT}/ws`);
   console.log("======================================");
   console.log("");
 });
