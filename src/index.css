@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
 }
 
@@ -1613,7 +1613,7 @@ nav {
 
 }
 /* ================================
-   DASHBOARD SON GÖRSEL DÜZENLEME
+   DASHBOARD SON GÃ–RSEL DÃœZENLEME
    ================================ */
 
 .large-card.market-card {
@@ -1711,7 +1711,7 @@ nav {
   font-size: 7px;
 }
 /* =========================================
-   DASHBOARD ALT BÖLÜM - TOPLU DÜZENLEME
+   DASHBOARD ALT BÃ–LÃœM - TOPLU DÃœZENLEME
    ========================================= */
 
 .lower-grid {
@@ -1738,11 +1738,11 @@ nav {
 }
 
 .lower-grid .card-header span {
-  font-size: 6px;
+  font-size: 8px;
 }
 
 .lower-grid .text-button {
-  font-size: 6px;
+  font-size: 8px;
 }
 
 .cash-card .cash-content {
@@ -1760,19 +1760,19 @@ nav {
 
 .cash-card .legend > div {
   min-height: 24px;
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .cash-card .legend span {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .cash-card .legend strong {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .lower-grid .table {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .lower-grid .table-header {
@@ -1793,17 +1793,17 @@ nav {
 
 .lower-grid .position-name,
 .lower-grid .asset-name {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .lower-grid .position-type,
 .lower-grid .asset-subtitle {
-  font-size: 6px;
+  font-size: 8px;
 }
 
 .lower-grid .positive,
 .lower-grid .negative {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 /* ALT SATIRLAR */

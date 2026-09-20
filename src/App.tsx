@@ -12,7 +12,7 @@ import { useState } from "react";
 import OpportunitiesPage from "./OpportunitiesPage";
 import SettingsPage from "./SettingsPage";
 import NotificationsPage from "./NotificationsPage";
-import { MarketDataProvider } from "./MarketDataContext.tsx";
+import { MarketDataProvider, useMarketData } from "./MarketDataContext.tsx";
 
 type Market = {
   symbol: string;
@@ -67,7 +67,7 @@ const markets: Market[] = [
   {
     symbol: "THYAO",
     name: "Türk Hava Yolları",
-    price: "312.50 ₺",
+    price: "312.50 â‚º",
     change: "+2.08%",
     category: "BIST",
     positive: true,
@@ -75,7 +75,7 @@ const markets: Market[] = [
   {
     symbol: "GARAN",
     name: "Garanti BBVA",
-    price: "146.80 ₺",
+    price: "146.80 â‚º",
     change: "+1.42%",
     category: "BIST",
     positive: true,
@@ -153,7 +153,31 @@ const positions = [
   },
 ];
 
-function App() {
+function AppContent() {
+  const { data: marketData } = useMarketData();
+  const liveMarkets = markets.map((market) => {
+    const symbol = `${market.symbol}USDT`;
+    const live = marketData.spot[symbol];
+
+    if (!live) {
+      return market;
+    }
+
+    return {
+      ...market,
+      price: `$${live.price.toLocaleString("en-US", {
+        maximumFractionDigits: 8,
+      })}`,
+      change:
+        live.change24h !== undefined
+          ? `${live.change24h >= 0 ? "+" : ""}${live.change24h.toFixed(2)}%`
+          : market.change,
+      positive:
+        live.change24h !== undefined
+          ? live.change24h >= 0
+          : market.positive,
+    };
+  });
   const [authenticated, setAuthenticated] = useState(() => {
     return localStorage.getItem("lyra_demo_session") === "1";
   });
@@ -163,22 +187,22 @@ function App() {
 
   const filteredMarkets =
     marketFilter === "Tümü"
-      ? markets
-      : markets.filter((market) => market.category === marketFilter);
+      ? liveMarkets
+      : liveMarkets.filter((market) => market.category === marketFilter);
 
   const menuItems = [
-    { name: "Dashboard", icon: "⌂" },
-    { name: "Kripto", icon: "₿" },
-    { name: "Futures", icon: "↗" },
-    { name: "BIST", icon: "▥" },
-    { name: "ABD Hisseleri", icon: "◫" },
-    { name: "Fırsatlar", icon: "✦" },
-    { name: "LYRA AI", icon: "Λ" },
-    { name: "Portföy", icon: "▣" },
-    { name: "Açık Pozisyonlar", icon: "◉" },
-    { name: "LYRA Performansı", icon: "◌" },
-    { name: "Bildirimler", icon: "♢" },
-    { name: "Ayarlar", icon: "⚙" },
+    { name: "Dashboard", icon: "âŒ‚" },
+    { name: "Kripto", icon: "â‚¿" },
+    { name: "Futures", icon: "â†—" },
+    { name: "BIST", icon: "â–¥" },
+    { name: "ABD Hisseleri", icon: "â—«" },
+    { name: "Fırsatlar", icon: "âœ¦" },
+    { name: "LYRA AI", icon: "Î›" },
+    { name: "Portföy", icon: "â–£" },
+    { name: "Açık Pozisyonlar", icon: "â—‰" },
+    { name: "LYRA Performansı", icon: "â—Œ" },
+    { name: "Bildirimler", icon: "â™¢" },
+    { name: "Ayarlar", icon: "âš™" },
   ];
 
   if (!authenticated) {
@@ -192,12 +216,11 @@ function App() {
   }
 
   return (
-    <MarketDataProvider>
-      <div className="app">
+    <div className="app">
         {/* SIDEBAR */}
         <aside className="sidebar">
           <div className="brand">
-            <div className="brand-logo">Λ</div>
+            <div className="brand-logo">Î›</div>
 
             <div>
               <div className="brand-name">LYRA</div>
@@ -227,7 +250,7 @@ function App() {
           </nav>
 
           <div className="sidebar-bottom-card">
-            <div className="sparkle">✦</div>
+            <div className="sparkle">âœ¦</div>
             <strong>
               Daha akıllı yatırımlar,
               <br />
@@ -242,7 +265,7 @@ function App() {
           {/* TOP BAR */}
           <header className="topbar">
             <div className="search">
-              <span>⌕</span>
+              <span>âŒ•</span>
               <input placeholder="Varlık, hisse, sembol ara..." />
             </div>
 
@@ -252,18 +275,18 @@ function App() {
                 Binance Bağlı
               </div>
 
-              <button className="top-icon">♧</button>
-              <button className="top-icon">☼</button>
+              <button className="top-icon">â™§</button>
+              <button className="top-icon">â˜¼</button>
 
               <div className="profile">
                 <div className="profile-avatar">EC</div>
 
                 <div>
-                  <strong>Eşref Can</strong>
+                  <strong>EÅŸref Can</strong>
                   <small>Premium</small>
                 </div>
 
-                <span>⌄</span>
+                <span>âŒ„</span>
               </div>
             </div>
           </header>
@@ -302,11 +325,11 @@ function App() {
               <div className="welcome">
                 <div className="welcome-main">
                   <div className="welcome-eyebrow">
-                    LYRA / KONTROL PANELİ
+                    LYRA / KONTROL PANELÄ°
                   </div>
 
                   <h1>
-                    Günaydın, Eşref Can <span>☀️</span>
+                    Günaydın, Eşref Can <span>â˜€ï¸</span>
                   </h1>
 
                   <p>Bugünün fırsatlarını birlikte değerlendirelim.</p>
@@ -326,31 +349,31 @@ function App() {
               {/* KPI CARDS */}
               <div className="stats-grid">
                 <StatCard
-                  icon="▣"
+                  icon="â–£"
                   title="Toplam Portföy"
                   value="$48,620"
-                  change="↗ +2.71% (bugün)"
+                  change="â†— +2.71% (bugün)"
                   positive
                 />
 
                 <StatCard
-                  icon="▤"
+                  icon="â–¤"
                   title="Serbest Kasa"
                   value="$12,480"
                   change="%62.4 kullanılabilir"
                 />
 
                 <StatCard
-                  icon="△"
+                  icon="â–³"
                   title="Günlük Kâr/Zarar"
                   value="+$1,284"
-                  change="↗ +2.71%"
+                  change="â†— +2.71%"
                   positive
                 />
 
                 <div className="stat-card risk-card">
                   <div className="stat-top">
-                    <div className="stat-icon">◈</div>
+                    <div className="stat-icon">â—ˆ</div>
 
                     <div>
                       <div className="stat-title">LYRA Risk</div>
@@ -370,7 +393,7 @@ function App() {
                 <div className="large-card portfolio-chart">
                   <div className="card-header">
                     <div>
-                      <h2>Portföy Performansı</h2>
+                      <h2>Portföy PerformansÄ±</h2>
                       <span>Toplam portföy değeri</span>
                     </div>
 
@@ -505,16 +528,16 @@ function App() {
                         <div className="market-name">
                           <div className="coin-icon">
                             {market.symbol === "BTC"
-                              ? "₿"
+                              ? "â‚¿"
                               : market.symbol === "ETH"
-                              ? "◆"
+                              ? "â—†"
                               : market.symbol === "SOL"
-                              ? "≋"
+                              ? "â‰‹"
                               : market.symbol === "BIST"
                               ? "B"
                               : market.symbol === "US500"
                               ? "S"
-                              : "●"}
+                              : "â—"}
                           </div>
 
                           <div>
@@ -603,7 +626,7 @@ function App() {
                     </div>
                   </div>
 
-                  <button className="primary-button">◉ Kasa Yönetimi</button>
+                  <button className="primary-button">â—‰ Kasa Yönetimi</button>
                 </div>
 
                 {/* ASSET DISTRIBUTION */}
@@ -663,7 +686,7 @@ function App() {
                       <span>Aktif işlemler ve güncel performans</span>
                     </div>
 
-                    <button className="text-button">Tümü →</button>
+                    <button className="text-button">Tümü â†’</button>
                   </div>
 
                   <div className="positions-table">
@@ -680,11 +703,11 @@ function App() {
                         <div className="position-asset">
                           <div className="coin-icon">
                             {position.symbol === "BTC"
-                              ? "₿"
+                              ? "â‚¿"
                               : position.symbol === "ETH"
-                              ? "◆"
+                              ? "â—†"
                               : position.symbol === "SOL"
-                              ? "≋"
+                              ? "â‰‹"
                               : "B"}
                           </div>
 
@@ -797,17 +820,17 @@ function App() {
                   </div>
 
                   <div className="quick-grid">
-                    <QuickAction icon="₿" label="Kripto AI/Sat" />
-                    <QuickAction icon="↗" label="Futures İşlemi" />
-                    <QuickAction icon="◉" label="Varlık Transferi" />
-                    <QuickAction icon="▣" label="Portföy Analizi" />
+                    <QuickAction icon="â‚¿" label="Kripto AI/Sat" />
+                    <QuickAction icon="â†—" label="Futures İşlemi" />
+                    <QuickAction icon="â—‰" label="Varlık Transferi" />
+                    <QuickAction icon="â–£" label="Portföy Analizi" />
                   </div>
                 </div>
               </div>
 
               {/* AI BANNER */}
               <div className="ai-banner">
-                <div className="ai-symbol">Λ</div>
+                <div className="ai-symbol">Î›</div>
 
                 <div>
                   <strong>LYRA AI</strong>
@@ -818,13 +841,12 @@ function App() {
                   </p>
                 </div>
 
-                <button className="ai-button">LYRA AI'ı Aç →</button>
+                <button className="ai-button">LYRA AI'ı Aç â†’</button>
               </div>
             </section>
           )}
         </main>
       </div>
-    </MarketDataProvider>
   );
 }
 
@@ -926,7 +948,7 @@ function Opportunity({
   return (
     <div className="opportunity">
       <div className="opportunity-symbol">
-        {symbol === "BTC" ? "₿" : symbol === "ETH" ? "◆" : "≋"}
+        {symbol === "BTC" ? "â‚¿" : symbol === "ETH" ? "â—†" : "â‰‹"}
       </div>
 
       <div>
@@ -962,3 +984,19 @@ function QuickAction({
 }
 
 export default App;
+
+
+
+
+
+
+function App() {
+  return (
+    <MarketDataProvider>
+      <AppContent />
+    </MarketDataProvider>
+  );
+}
+
+
+
