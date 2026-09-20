@@ -1,0 +1,669 @@
+.bist-page {
+  padding: 24px 27px 45px;
+}
+
+.bist-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.bist-eyebrow {
+  color: #00d8a7;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.bist-eyebrow.small {
+  font-size: 8px;
+}
+
+.bist-header h1 {
+  margin: 7px 0 5px;
+  font-size: 27px;
+}
+
+.bist-header p {
+  margin: 0;
+  color: #71819f;
+  font-size: 10px;
+}
+
+.bist-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #00ddb0;
+  font-size: 8px;
+}
+
+.bist-status span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ddb0;
+  box-shadow: 0 0 10px rgba(0, 221, 176, 0.8);
+}
+
+.bist-index-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 13px;
+}
+
+.bist-index-card,
+.bist-card {
+  border: 1px solid #143256;
+  border-radius: 11px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 21, 44, 0.98),
+      rgba(3, 12, 29, 0.98)
+    );
+}
+
+.bist-index-card {
+  min-height: 112px;
+  padding: 15px;
+}
+
+.bist-index-card > span {
+  display: block;
+  color: #6c7e9b;
+  font-size: 8px;
+}
+
+.bist-index-card > strong {
+  display: block;
+  margin-top: 5px;
+  color: #edf2ff;
+  font-size: 21px;
+}
+
+.index-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.index-bottom em {
+  font-size: 9px;
+  font-style: normal;
+}
+
+.mini-bars {
+  height: 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.mini-bars i {
+  width: 9px;
+  display: block;
+  border-radius: 2px 2px 0 0;
+  background: #00cda4;
+}
+
+.mini-bars i:nth-child(1) {
+  height: 5px;
+}
+
+.mini-bars i:nth-child(2) {
+  height: 8px;
+}
+
+.mini-bars i:nth-child(3) {
+  height: 7px;
+}
+
+.mini-bars i:nth-child(4) {
+  height: 13px;
+}
+
+.mini-bars i:nth-child(5) {
+  height: 11px;
+}
+
+.mini-bars i:nth-child(6) {
+  height: 20px;
+}
+
+.bist-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 315px;
+  gap: 13px;
+}
+
+.bist-left,
+.bist-right {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.bist-chart-card {
+  min-height: 490px;
+}
+
+.bist-card-header {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(36, 61, 95, 0.4);
+}
+
+.bist-card-header h2 {
+  margin: 0;
+  color: #e9eefb;
+  font-size: 12px;
+}
+
+.bist-card-header span {
+  display: block;
+  margin-top: 4px;
+  color: #647491;
+  font-size: 8px;
+}
+
+.bist-periods {
+  display: flex;
+  gap: 4px;
+}
+
+.bist-periods button {
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid #173659;
+  border-radius: 5px;
+  color: #72829d;
+  background: #07172f;
+  font-size: 7px;
+}
+
+.bist-periods .active {
+  color: #fff;
+  border-color: #2f907f;
+  background: rgba(0, 185, 144, 0.2);
+}
+
+.bist-chart-meta {
+  display: flex;
+  gap: 12px;
+  padding: 10px 16px 2px;
+  color: #70809c;
+  font-size: 7px;
+}
+
+.bist-chart-meta strong {
+  color: #cdd6e7;
+}
+
+.bist-chart {
+  height: 395px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.bist-grid-lines {
+  position: absolute;
+  left: 10px;
+  right: 45px;
+  top: 15px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bist-grid-lines span {
+  width: 100%;
+  height: 1px;
+  background: rgba(48, 72, 105, 0.15);
+}
+
+.bist-axis {
+  position: absolute;
+  right: 8px;
+  top: 15px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #566a88;
+  font-size: 7px;
+}
+
+.bist-chart svg {
+  width: calc(100% - 55px);
+  height: 350px;
+  margin-left: 10px;
+  position: relative;
+}
+
+.bist-price-tag {
+  position: absolute;
+  right: 4px;
+  top: 74px;
+  padding: 5px 7px;
+  border-radius: 4px;
+  color: #001915;
+  background: #00d8a7;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.bist-date-axis {
+  position: absolute;
+  left: 10px;
+  right: 45px;
+  bottom: 9px;
+  display: flex;
+  justify-content: space-between;
+  color: #536682;
+  font-size: 7px;
+}
+
+.bist-analysis {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 13px;
+  align-items: start;
+}
+
+.analysis-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #6fffe0;
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 208, 165, 0.23),
+      rgba(0, 208, 165, 0.04)
+    );
+  border: 1px solid rgba(0, 208, 165, 0.26);
+  font-size: 19px;
+}
+
+.analysis-body h2 {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.analysis-body p {
+  margin: 0;
+  color: #70819e;
+  font-size: 8px;
+  line-height: 1.6;
+}
+
+.bist-analysis-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.bist-analysis-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bist-analysis-stats span {
+  color: #5f728e;
+  font-size: 7px;
+}
+
+.bist-analysis-stats strong {
+  color: #d9e0ee;
+  font-size: 9px;
+}
+
+.analysis-button {
+  height: 31px;
+  padding: 0 12px;
+  border: 1px solid #296c62;
+  border-radius: 6px;
+  color: #60f0d1;
+  background: rgba(0, 174, 139, 0.08);
+  font-size: 7px;
+}
+
+.stock-card {
+  overflow: hidden;
+}
+
+.text-button {
+  border: 0;
+  background: transparent;
+  color: #8571ff;
+  font-size: 8px;
+}
+
+.stock-table {
+  padding: 0 10px 10px;
+}
+
+.stock-head,
+.stock-row {
+  display: grid;
+  grid-template-columns: 1.5fr 0.75fr 0.65fr 0.65fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.stock-head {
+  min-height: 31px;
+  padding: 0 8px;
+  color: #50637f;
+  font-size: 7px;
+}
+
+.stock-row {
+  min-height: 49px;
+  padding: 0 8px;
+  border-top: 1px solid rgba(30, 53, 87, 0.35);
+  color: #a4b0c4;
+  font-size: 8px;
+}
+
+.stock-row > strong {
+  color: #dde3f0;
+  font-size: 8px;
+}
+
+.stock-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stock-logo,
+.opportunity-symbol-bist {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  color: white;
+  background:
+    linear-gradient(
+      145deg,
+      #0f7c6c,
+      #17b59a
+    );
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.stock-name strong {
+  display: block;
+  color: #e1e6f2;
+}
+
+.stock-name small {
+  display: block;
+  margin-top: 3px;
+  color: #5c6e8a;
+  font-size: 6px;
+}
+
+.market-overview {
+  padding-bottom: 12px;
+}
+
+.live-badge {
+  color: #00d9aa !important;
+  font-size: 7px !important;
+}
+
+.overview-number {
+  padding: 16px;
+}
+
+.overview-number span {
+  display: block;
+  color: #657693;
+  font-size: 7px;
+}
+
+.overview-number strong {
+  display: inline-block;
+  margin-top: 5px;
+  color: #fff;
+  font-size: 24px;
+}
+
+.overview-number em {
+  margin-left: 8px;
+  font-size: 9px;
+  font-style: normal;
+}
+
+.overview-divider {
+  height: 1px;
+  background: #183153;
+}
+
+.overview-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 16px;
+  color: #687894;
+  font-size: 8px;
+}
+
+.overview-row strong {
+  color: #d8dfec;
+}
+
+.sector-list {
+  padding: 10px 16px 15px;
+}
+
+.sector-row {
+  margin-top: 12px;
+}
+
+.sector-label {
+  display: flex;
+  justify-content: space-between;
+  color: #91a0b8;
+  font-size: 8px;
+}
+
+.sector-label strong {
+  font-size: 8px;
+}
+
+.sector-bar {
+  height: 5px;
+  margin-top: 6px;
+  border-radius: 5px;
+  background: #122a4a;
+  overflow: hidden;
+}
+
+.sector-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      #008f78,
+      #00d6a7
+    );
+}
+
+.bist-opportunities {
+  padding: 5px 10px 10px;
+}
+
+.bist-opportunity {
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 30px 1fr 48px;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px solid rgba(30, 53, 87, 0.35);
+}
+
+.bist-opportunity:first-child {
+  border-top: 0;
+}
+
+.bist-opportunity > div:nth-child(2) strong {
+  display: block;
+  color: #e1e7f3;
+  font-size: 8px;
+}
+
+.bist-opportunity > div:nth-child(2) span {
+  display: block;
+  margin-top: 3px;
+  color: #627390;
+  font-size: 6px;
+}
+
+.opportunity-right {
+  text-align: right;
+}
+
+.opportunity-right strong {
+  display: block;
+  color: #00d9aa;
+  font-size: 11px;
+}
+
+.opportunity-right span {
+  display: block;
+  margin-top: 2px;
+  color: #74839d;
+  font-size: 6px;
+}
+
+.bist-cash {
+  padding-bottom: 15px;
+}
+
+.cash-icon {
+  width: 27px !important;
+  height: 27px;
+  display: grid !important;
+  place-items: center;
+  border-radius: 7px;
+  background: rgba(0, 211, 168, 0.1);
+  color: #00d9aa !important;
+  font-size: 13px !important;
+}
+
+.cash-value {
+  display: block;
+  padding: 12px 16px 2px;
+  color: #edf1fb;
+  font-size: 24px;
+}
+
+.cash-progress {
+  height: 6px;
+  margin: 12px 16px;
+  border-radius: 5px;
+  background: #11294a;
+  overflow: hidden;
+}
+
+.cash-progress span {
+  display: block;
+  width: 69%;
+  height: 100%;
+  border-radius: inherit;
+  background: #00d7a7;
+}
+
+.cash-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: #687896;
+  font-size: 7px;
+}
+
+.cash-bottom strong {
+  color: #d9e1ed;
+}
+
+.cash-button {
+  width: calc(100% - 32px);
+  height: 31px;
+  margin: 14px 16px 0;
+  border: 1px solid #285e57;
+  border-radius: 6px;
+  color: #00dfad;
+  background: rgba(0, 177, 143, 0.08);
+  font-size: 8px;
+}
+
+@media (max-width: 1100px) {
+  .bist-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bist-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bist-cash {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 850px) {
+  .bist-index-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bist-analysis {
+    grid-template-columns: 42px 1fr;
+  }
+
+  .analysis-button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .bist-analysis-stats {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .bist-index-grid,
+  .bist-right {
+    grid-template-columns: 1fr;
+  }
+
+  .stock-table {
+    overflow-x: auto;
+  }
+
+  .stock-head,
+  .stock-row {
+    min-width: 650px;
+  }
+}
