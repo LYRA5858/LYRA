@@ -2,46 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-[#0b0e11] text-[#eaecef] antialiased selection:bg-[#F0B90B] selection:text-black;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  /* Input, Select ve Textarea Yazı Boyutları */
-  input, select, textarea {
-    font-size: 15px !important;
-  }
-
-  /* Placeholder Yazı Boyutları */
-  ::placeholder {
-    font-size: 14px !important;
-  }
+body {
+  background-color: #0b0e11;
+  color: #eaecef;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
-/* Genel Typography Büyütme Kuralları */
+input, select, textarea {
+  font-size: 15px !important;
+}
+
+::placeholder {
+  font-size: 14px !important;
+}
+
 .text-xs {
-  font-size: 0.8125rem !important; /* ~13px */
+  font-size: 0.8125rem !important;
   line-height: 1.15rem !important;
 }
 
 .text-sm {
-  font-size: 0.9375rem !important; /* ~15px */
+  font-size: 0.9375rem !important;
   line-height: 1.35rem !important;
 }
 
-/* Tablo Metinleri */
 table td, table th {
   font-size: 14px !important;
 }
 
-/* Sidebar ve Menü Yazıları */
 nav a, nav button, aside a, aside button {
   font-size: 15px !important;
 }
 
-/* Yardımcı Metinler */
 .text-gray-400, .text-slate-400, .text-muted {
   font-size: 13.5px !important;
 }
