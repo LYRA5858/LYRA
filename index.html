@@ -4,8 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LYRA - Kripto Ticaret Zekası</title>
+
+    <!-- Tailwind CDN Fallback (CSS yüklenememe riskine karşı kesin çözüm) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              binanceBg: '#0b0e11',
+              binanceCard: '#1e2329',
+              binanceYellow: '#F0B90B',
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body class="bg-[#0b0e11] text-[#eaecef]">
+  <body class="bg-[#0b0e11] text-[#eaecef] min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
