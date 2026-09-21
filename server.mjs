@@ -138,7 +138,7 @@ function connectFuturesSymbol(symbol) {
   const url =
     `wss://fstream.binance.com/market/ws/${stream}`;
 
-  console.log(`FUTURES baÄŸlantÄ±sÄ± kuruluyor: ${symbol}`);
+  console.log(`FUTURES baÄŸlantısı kuruluyor: ${symbol}`);
 
   const ws = new WebSocket(url);
 
@@ -166,7 +166,7 @@ function connectFuturesSymbol(symbol) {
       broadcast();
     } catch (error) {
       console.error(
-        `Futures veri hatasÄ± ${symbol}:`,
+        `Futures veri hatası ${symbol}:`,
         error.message
       );
     }
@@ -174,7 +174,7 @@ function connectFuturesSymbol(symbol) {
 
   ws.on("close", () => {
     console.log(
-      `âš ï¸ Futures baÄŸlantÄ±sÄ± kapandÄ±: ${symbol}. Yeniden baÄŸlanÄ±lÄ±yor...`
+      `âš ï¸ Futures baÄŸlantısı kapandı: ${symbol}. Yeniden baÄŸlanılıyor...`
     );
 
     setTimeout(() => {
@@ -184,7 +184,7 @@ function connectFuturesSymbol(symbol) {
 
   ws.on("error", (error) => {
     console.error(
-      `Futures WebSocket hatasÄ± ${symbol}:`,
+      `Futures WebSocket hatası ${symbol}:`,
       error.message
     );
   });
@@ -270,7 +270,7 @@ app.post("/api/ai", async (req, res) => {
     if (!openai) {
       return res.status(503).json({
         ok: false,
-        error: "OPENAI_API_KEY tanÄ±mlÄ± deÄŸil.",
+        error: "OPENAI_API_KEY tanımlı deÄŸil.",
       });
     }
 
@@ -289,26 +289,26 @@ app.post("/api/ai", async (req, res) => {
       model: process.env.OPENAI_MODEL || "gpt-5.6-luna",
 
       instructions: `
-Sen LYRA adlÄ± finansal analiz uygulamasÄ±nÄ±n yapay zeka asistanÄ±sÄ±n.
+Sen LYRA adlı finansal analiz uygulamasının yapay zeka asistanısın.
 
-GÃ¶revin:
-- KullanÄ±cÄ±ya piyasa verilerini anlaÅŸÄ±lÄ±r ÅŸekilde analiz etmek.
-- Verileri ve yorumlarÄ± birbirinden ayÄ±rmak.
-- Belirsizlikleri aÃ§Ä±kÃ§a belirtmek.
-- Kesin kazanÃ§, kesin kayÄ±p veya garanti dili kullanmamak.
-- KullanÄ±cÄ± adÄ±na yatÄ±rÄ±m kararÄ± vermemek.
+Görevin:
+- Kullanıcıya piyasa verilerini anlaşılır şekilde analiz etmek.
+- Verileri ve yorumları birbirinden ayırmak.
+- Belirsizlikleri açıkça belirtmek.
+- Kesin kazanç, kesin kayıp veya garanti dili kullanmamak.
+- Kullanıcı adına yatırım kararı vermemek.
 - GerektiÄŸinde teknik ve temel verileri birlikte deÄŸerlendirmek.
-- YanÄ±tlarÄ±nÄ± TÃ¼rkÃ§e vermek.
+- Yanıtlarını Türkçe vermek.
 
-Elindeki piyasa verisi gerÃ§ek zamanlÄ± piyasa akÄ±ÅŸÄ±ndan gelir.
-Veri eksikse bunu aÃ§Ä±kÃ§a belirt.
+Elindeki piyasa verisi gerçek zamanlı piyasa akışından gelir.
+Veri eksikse bunu açıkça belirt.
 `,
 
       input: `
 KULLANICI SORUSU:
 ${prompt}
 
-GÃœNCEL PÄ°YASA VERÄ°LERÄ°:
+GÇœNCEL PÄ°YASA VERÄ°LERÄ°:
 ${marketData}
       `,
     });
@@ -319,11 +319,11 @@ ${marketData}
       marketUpdatedAt: state.updatedAt,
     });
   } catch (error) {
-    console.error("LYRA AI hatasÄ±:", error);
+    console.error("LYRA AI hatası:", error);
 
     res.status(500).json({
       ok: false,
-      error: error.message || "AI isteÄŸi baÅŸarÄ±sÄ±z.",
+      error: error.message || "AI isteÄŸi başarısız.",
     });
   }
 });
