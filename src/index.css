@@ -2,23 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@layer base {
-  body {
-    background-color: #0b0e11 !important;
-    color: #eaecef !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-/* Tablo ve Kart Yapıları İçin Yatak Stiller */
-.bg-[#1e2329] { background-color: #1e2329 !important; }
-.bg-[#0b0e11] { background-color: #0b0e11 !important; }
-.text-white { color: #ffffff !important; }
-.text-gray-400 { color: #848e9c !important; }
-
-/* Buton ve Girdiler */
-input, select, textarea, button {
-  font-family: inherit;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b0e11 !important;
+  color: #eaecef !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
 }
