@@ -1,28 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LYRA - Kripto Ticaret Zekası</title>
-
-    <!-- Tailwind CDN Fallback (CSS yüklenememe riskine karşı kesin çözüm) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              binanceBg: '#0b0e11',
-              binanceCard: '#1e2329',
-              binanceYellow: '#F0B90B',
-            }
-          }
-        }
-      }
-    </script>
+    <meta name="theme-color" content="#0b0e11" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="LYRA — Finansal Zeka ve Gerçek Zamanlı Piyasa Analiz Platformu" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>LYRA | Finansal Zeka</title>
   </head>
-  <body class="bg-[#0b0e11] text-[#eaecef] min-h-screen">
+  <body class="min-h-screen bg-[#0b0e11] text-white antialiased">
+    <noscript>
+      LYRA uygulamasını kullanabilmek için JavaScript'i etkinleştirmeniz gerekir.
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
